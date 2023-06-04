@@ -61,9 +61,12 @@ while True:
             df_now = df_now[-10:]
             #print(df_now)
             df_now.to_csv('pre_data_1.csv',index=False)
+            time.sleep(3)
         else:
+            time.sleep(1)
             continue
     else:
+        time.sleep(3)
         continue
 
-    time.sleep(3)
+    
