@@ -33,7 +33,7 @@ def gmt_img_url(key=None,local_file=None,**kwargs):
 
     return url
 #fpath = os.path.join(rcParams["datapath"], "fonts/ttf/cmr10.ttf")
-res_df = pd.read_csv('/root//root/smart_money_tocsv/address_smart.csv')
+res_df = pd.read_csv('/root/smart_money_tocsv/address_smart.csv')
 res_df = res_df.sort_values(by='date')
 res_df = res_df.reset_index(drop=True)
 
