@@ -49,7 +49,7 @@ session = Session()
 try:
     response = session.get(url)
     data = json.loads(response.text)
-except as e:
+except:
     print(e)
 date = []
 ba = []
