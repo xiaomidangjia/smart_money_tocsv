@@ -49,7 +49,7 @@ session = Session()
 try:
     response = session.get(url)
     data = json.loads(response.text)
-except(ConnectionError,Timeout,TooManyRedirects) as e:
+except as e:
     print(e)
 date = []
 ba = []
@@ -105,6 +105,7 @@ res_data = res_data.reset_index(drop=True)
 sub_df['date'] = pd.to_datetime(sub_df['date'])
 res_df = sub_df.merge(res_data[['date','close']],how='left',on=['date'])
 res_df = res_df.sort_values(by='date')
+res_df = res_df.reset_index(drop=True)
 import matplotlib.pyplot as plt
 import seaborn as sns
 # 绘画折线图
@@ -112,17 +113,23 @@ f, axes = plt.subplots(figsize=(20, 10))
 axes_fu = axes.twinx()
 sns.lineplot(x="date", y="value",color='red', linewidth=0.5,data=res_df, ax=axes)
 sns.lineplot(x="date", y="close", data=res_df, ax=axes_fu)
-plt.title('SMART ADDRESS', fontsize=20)
 
-title_asset_pool = str(datetime.datetime.now().strftime('%Y-%m-%d'))
-fig_name = str(title_asset_pool) + '_smart_address' + '.png'
-plt.savefig(fig_name,bbox_inches='tight')
+plt.title('ETH聪明钱地址追踪', fontsize=20,fontproperties=prop) 
+axes.set_xlabel('时间',fontsize=14,fontproperties=prop)
+axes.set_ylabel("持仓量",fontsize=14,fontproperties=prop)
+axes_fu.set_ylabel("ETH价格",fontsize=14,fontproperties=prop)
+
+plt.savefig('ETH聪明钱地址追踪.png',  bbox_inches='tight')
 plt.close()
 
 
+from watermarker.marker import add_mark
+add_mark(file = "ETH聪明钱地址追踪.png", out = "out",mark = "币coin---0XCarson出品", opacity=0.2, angle=30, space=30)
+
+fig_name = '/root/smart_money_tocsv/out/ETH聪明钱地址追踪.png'
 #推送钉钉群
 time_str = str(time.time())[0:10]
-key = 'smart_address_' + time_str + '.png'
+key = 'eth_smart_address_' + time_str + '.png'
 img_url = gmt_img_url(key=key, local_file=fig_name)
 now_time = str(datetime.datetime.now())[0:19]
 
