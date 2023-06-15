@@ -7,6 +7,7 @@ import os
 import re
 import datetime
 from requests import Request,Session
+from matplotlib import font_manager as fm, rcParams
 from requests.exceptions import ConnectionError,Timeout,TooManyRedirects
 # ======= 正式开始执行
 prop = fm.FontProperties(fname='/root/smart_money_tocsv/SimHei.ttf')
