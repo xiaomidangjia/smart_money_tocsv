@@ -1,7 +1,7 @@
 import telegram
 bot = telegram.Bot(token='6219784883:AAE3YXlXvxNArWJu-0qKpKlhm4KaTSHcqpw')
 bot.sendDocument(chat_id='-840309715', document=open('/root/usdt_predict/out/未来24小时BTC价格趋势预测.png', 'rb'))
-
+import pandas as pd
 from dingtalkchatbot.chatbot import DingtalkChatbot
 webhook = 'https://oapi.dingtalk.com/robot/send?access_token=a9789d2739819eab19b07dcefe30df3fcfd9f815bf198ced54c71c557f09e7d9'
 from qiniu import Auth, put_file, etag
